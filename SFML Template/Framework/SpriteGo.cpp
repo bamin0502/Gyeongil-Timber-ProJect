@@ -9,6 +9,10 @@ SpriteGo::SpriteGo(const std::string& name) : GameObject(name)
 void SpriteGo::SetTexture(const sf::Texture& texture)
 {
 	sprite.setTexture(texture);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27eb8bfd34b53dd618e87e477b608fc09ec85c75
 }
 
 void SpriteGo::SetTexture(const std::string& textureId)
