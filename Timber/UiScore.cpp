@@ -14,5 +14,11 @@ void UiScore::Reset()
 void UiScore::SetScore(int score)
 {
 	this->score = score;
-	text.setString(textFormat + std::to_string(score));
+	text.setString(textFormat + std::to_string(this->score));
+}
+
+void UiScore::AddScore(int score)
+{
+	this->score += score;
+	text.setString(textFormat + std::to_string(this->score));
 }

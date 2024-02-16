@@ -158,11 +158,13 @@ void SCENE_GAME::UpdateGame(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
 	{
 		timer += 0.5f;
+		uiScore->AddScore(10);
 	}
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
 	{
 		timer += 0.5f;
+		uiScore->AddScore(10);
 	}
 
 	timer = timer > 3.0f ? 3.0f : timer;
@@ -173,7 +175,13 @@ void SCENE_GAME::UpdateGame(float dt)
 	{
 		SetStatus(Status::GameOver);
 		player->OnDie();
+
 		sfxTimeOver.play();
+		for (GameObject* obj : gameObjects)
+		{
+			obj->Init();
+		}
+		uiScore->SetScore(0);
 		return;
 	}
 
@@ -256,6 +264,11 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
 		uiMsg->SetString("GAME OVER! PRESS ENTER TO RESTART!");
+		for (GameObject* obj : gameObjects)
+		{
+			obj->Init();
+		}
+		uiScore->SetScore(0);
 		break;
 	case Status::Pause:
 		FRAMEWORK.SetTimeScale(0.f);
