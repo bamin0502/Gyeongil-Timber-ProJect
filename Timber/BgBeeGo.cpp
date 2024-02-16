@@ -27,4 +27,12 @@ void BgBeeGo::Update(float dt)
 		timer = 0.f;
 		ReDirection();
 	}
+	if (direction.x > 0.f)
+	{
+		sprite.setScale(-1.f, 1.f);
+	}
+	if (direction.x < 0.f)
+	{
+		sprite.setScale(1.f, 1.f);
+	}
 }
