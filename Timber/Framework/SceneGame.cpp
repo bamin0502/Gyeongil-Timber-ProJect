@@ -144,6 +144,8 @@ void SCENE_GAME::UpdateAwake(float dt)
 	{
 		SetStatus(Status::Game);
 	}
+
+
 }
 
 void SCENE_GAME::UpdateGame(float dt)
@@ -152,6 +154,18 @@ void SCENE_GAME::UpdateGame(float dt)
 	{
 		SetStatus(Status::Pause);
 	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	{
+		timer += 0.5f;
+	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	{
+		timer += 0.5f;
+	}
+
+	timer = timer > 3.0f ? 3.0f : timer;
 
 	timer -= dt;
 	uiTimeBar->SetValue(timer / duration);

@@ -161,7 +161,7 @@ void Player::Update(float dt)
 		}
 	}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left) || InputMgr::GetKeyUp(sf::Keyboard::Left))
+	if (InputMgr::GetKeyUp(sf::Keyboard::Left) || InputMgr::GetKeyUp(sf::Keyboard::Right))
 	{
 		isChopping = false;
 	}
