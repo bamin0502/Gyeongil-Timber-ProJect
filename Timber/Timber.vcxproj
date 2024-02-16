@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ModechoiceScene.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -180,6 +181,7 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="Framework\GameObject.h" />
+    <ClInclude Include="ModechoiceScene.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\SceneMgr.h" />

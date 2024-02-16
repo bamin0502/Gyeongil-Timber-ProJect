@@ -16,8 +16,6 @@ void SceneMgr::Init()
 	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME_MODE_SELECT));
 	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
 	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_PLAYER_2_MODE));
-
-
 	for (auto scene : scenes)
 	{
 		scene->Init();
@@ -39,7 +37,6 @@ void SceneMgr::Release()
 
 void SceneMgr::ChangeScene(SceneIds id)
 {
-	// TO-DO: 모든 게임 오브젝트 업데이트 끝난 후에 씬 전환 되도록
 
 	scenes[(int)currentScene]->Exit();
 	currentScene = id;
