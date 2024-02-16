@@ -399,7 +399,5 @@ FodyWeavers.xsd
 .idea/
 
 # exe!
-/SFML Templelate Bin/Timber.exe
-SFML Template Bin/Timber.exe
-SFML Template Bin/SFML Template.exe
 Timber Bin/Timber.exe
+
