@@ -37,7 +37,7 @@ protected:
 	std::vector<UiTimeBar*> uiTimeBar{ nullptr, nullptr };
 	std::vector<float> timer{ 0.f, 0.f };
 
-	std::map<std::string, std::unique_ptr<SpriteGo>> sprites;
+	std::map<std::string, SpriteGo*> sprites;
 	// sprites[std::string key] 로 접근가능
 
 	std::vector<Tree*> tree;
