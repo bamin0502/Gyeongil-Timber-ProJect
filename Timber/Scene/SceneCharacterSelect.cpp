@@ -74,7 +74,17 @@ void SceneCharacterSelect::Init()
     readyButton.setOrigin({200, 50});
     readyButton.setPosition({1920.f / 2, 1080.f / 2 + 320});
 
+    player1Text = new TextGo("Player1Text");
+    player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1", 30, Color::Black);
+    player1Text->SetPosition({(1920.f / 2)-300, 1080.f / 2 + 150});
+    player1Text->SetOrigin(Origins::MC);
+    AddGo(player1Text);
 
+    player2Text = new TextGo("Player2Text");
+    player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2", 30, Color::Black);
+    player2Text->SetPosition({(1920.f / 2)+300, 1080.f / 2 + 150});
+    player2Text->SetOrigin(Origins::MC);
+    AddGo(player2Text);
     
     choiceText = new TextGo("ChoiceText");
     choiceText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Choose your character!", 75, Color::White);
@@ -82,8 +92,7 @@ void SceneCharacterSelect::Init()
     choiceText->SetOrigin(Origins::MC);
     AddGo(choiceText);
 
-    
-    
+
 }
 
 void SceneCharacterSelect::Release()
@@ -107,6 +116,7 @@ void SceneCharacterSelect::Exit()
 {
 }
 
+
 void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
@@ -115,13 +125,43 @@ void SceneCharacterSelect::Update(float dt)
     if (InputMgr::GetKeyDown(Keyboard::LShift))
     {
         player1State = PlayerReadyState::READY;
+        player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1 \n Ready", 30, Color::Green);
+    }
+    else
+    {
+        player1State = PlayerReadyState::NOT_READY;
+        player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1", 30, Color::Black);
     }
     if(InputMgr::GetKeyDown(Keyboard::RShift))
     {
         player2State = PlayerReadyState::READY;
+        player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2 \n Ready", 30, Color::Green);
     }
-    
-    
+    else
+    {
+        player2State = PlayerReadyState::NOT_READY;
+        player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2", 30, Color::Black);
+    }
+    //플레이어 이미지 변경 관련
+    if(InputMgr::GetKeyDown(Keyboard::Up))
+    {
+        player1Index++;
+        if(player1Index>=CharacterTexture.size())
+        {
+            player1Index=0;
+        }
+        player1->SetTexture(CharacterTexture[player1Index]);
+    }
+    if(InputMgr::GetKeyDown(Keyboard::Down))
+    {
+        player2Index++;
+        if(player2Index>=CharacterTexture.size())
+        {
+            player2Index=0;
+        }
+        player2->SetTexture(CharacterTexture[player2Index]);
+    }
+    //초록색일때 마우스 왼쪽을 누르면 게임을 시작한다.
     if (InputMgr::GetMouseButtonDown(Mouse::Left))
     {
         if(isReady)
@@ -133,7 +173,7 @@ void SceneCharacterSelect::Update(float dt)
             return;
         }
     }
-    
+    //둘다 준비가 완료되었다면
     if(player1State==PlayerReadyState::READY && player2State==PlayerReadyState::READY)
     {
         isReady= true;
