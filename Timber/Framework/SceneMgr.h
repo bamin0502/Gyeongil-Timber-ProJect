@@ -10,7 +10,7 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::vector<Scene*> scenes;
 
-	SceneIds startScene = SceneIds::SCENE_PLAYER_2_MODE; // 임시 수정
+	SceneIds startScene = SceneIds::SCENE_TITLE;
 	SceneIds currentScene = startScene;
 
 	SceneMgr() = default;
@@ -23,8 +23,7 @@ public:
 	void ChangeScene(SceneIds id);
 
 	
-	//Scene* GetCurrentScene() { return scenes[(int)currentScene]; } 원본
-	Scene* GetCurrentScene() { return scenes[0]; } // 임시 수정
+	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
 
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window);
