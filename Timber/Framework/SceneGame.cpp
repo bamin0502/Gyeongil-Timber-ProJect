@@ -35,11 +35,17 @@ void SCENE_GAME::Init()
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
 
+	soundResMgr.Load("sound/In a Hurry.wav");
+	Bgm.openFromFile("sound/In a Hurry.wav");
+	
+	
+	
+	
 	SpriteGo* newSpriteGo = new SpriteGo("BG");
 	newSpriteGo->SetTexture("graphics/background.png");
 	AddGo(newSpriteGo);
 
-	sf::FloatRect movingBounds({ -200.f, 0.f }, { 1920.f + 400.f, 600.f });
+	FloatRect movingBounds({ -200.f, 0.f }, { 1920.f + 400.f, 600.f });
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -64,7 +70,7 @@ void SCENE_GAME::Init()
 	beeGo->SetPosition({ 1920.f / 2, 1080.f / 2 });
 	AddGo(beeGo);
 
-	sf::Vector2f uiTimeBarPos = (sf::Vector2f)FRAMEWORK.GetWindowSize();
+	Vector2f uiTimeBarPos = (sf::Vector2f)FRAMEWORK.GetWindowSize();
 	uiTimeBarPos.x *= 0.5f;
 	uiTimeBarPos.x -= 200.f;
 	uiTimeBarPos.y *= 0.9f;
@@ -97,7 +103,7 @@ void SCENE_GAME::Init()
 void SCENE_GAME::Release()
 {
 	Scene::Release();
-
+	Bgm.stop();
 	uiScore = nullptr;
 	uiMsg = nullptr;
 }
@@ -105,7 +111,9 @@ void SCENE_GAME::Release()
 void SCENE_GAME::Enter()
 {
 	player->SetPosition(tree->GetPosition());
-
+	Bgm.setVolume(30);
+	Bgm.setLoop(true);
+	Bgm.play();
 	Scene::Enter();
 
 	SetStatus(Status::Awake);
@@ -124,8 +132,10 @@ void SCENE_GAME::Update(float dt)
 	{
 	case Status::Awake:
 		UpdateAwake(dt);
+		
 		break;
 	case Status::Game:
+	
 		UpdateGame(dt);
 		break;
 	case Status::GameOver:
@@ -149,7 +159,6 @@ void SCENE_GAME::UpdateAwake(float dt)
 
 void SCENE_GAME::UpdateGame(float dt)
 {
-
 	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
 		SetStatus(Status::Pause);
@@ -184,6 +193,9 @@ void SCENE_GAME::UpdateGame(float dt)
 		uiScore->SetScore(0);
 		return;
 	}
+
+
+	
 
 	auto it = useEffectList.begin();
 	while (it != useEffectList.end())

@@ -21,6 +21,7 @@ void SceneMgr::Init()
 	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
 	scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
 
+
 	for (auto scene : scenes)
 	{
 		scene->Init();

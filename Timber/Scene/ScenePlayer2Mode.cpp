@@ -119,7 +119,7 @@ void ScenePlayer2Mode::Init()
 	// *********************SoundLoad**********************
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
-
+	Bgm.openFromFile("sound/BackgroundMusic.wav");
 	// ********************Backgorund**********************
 	AddGoSpriteLoadTexture("Background", "BG", "graphics/background.png");
 	
@@ -247,6 +247,10 @@ void ScenePlayer2Mode::UpdateAwake(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+		
+		Bgm.setVolume(30);
+		Bgm.setLoop(true);
+		Bgm.play();
 	}
 }
 
@@ -344,6 +348,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 void ScenePlayer2Mode::UpdateGameOver(float dt)
 {
+	Bgm.stop();
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
@@ -458,6 +463,7 @@ void ScenePlayer2Mode::LeftPlayerMoveChopEffect(Sides inputSideLeftPlayer)
 			LeftPlayerDie();
 			player[(int)PLAYER::LEFT_PLAYER]->OnDie();
 			player[(int)PLAYER::LEFT_PLAYER]->sfxDeath.play();
+
 		}
 	}
 

@@ -51,8 +51,8 @@ protected:
 
 	float duration = 3.f;
 
-	sf::Sound sfxTimeOver;
-
+	Sound sfxTimeOver;
+	Music Bgm;
 
 public:
 	ScenePlayer2Mode(SceneIds id);
@@ -79,7 +79,7 @@ public:
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
 
-	void Draw(sf::RenderWindow& window) override;
+	void Draw(RenderWindow& window) override;
 
 	void OnChop();
 	void OnPlayerDie();

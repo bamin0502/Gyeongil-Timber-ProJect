@@ -34,8 +34,8 @@ protected:
 	float duration = 3.f;
 	float timer = 0.f;
 
-	sf::Sound sfxTimeOver;
-
+	Sound sfxTimeOver;
+	Music Bgm;
 public:
 	SCENE_GAME(SceneIds id);
 	virtual ~SCENE_GAME();
@@ -56,7 +56,7 @@ public:
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
 
-	void Draw(sf::RenderWindow& window) override;
+	void Draw(RenderWindow& window) override;
 
 	void OnChop();
 	void OnPlayerDie();
