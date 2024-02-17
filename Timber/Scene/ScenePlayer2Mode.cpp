@@ -392,7 +392,7 @@ void ScenePlayer2Mode::AddGoSpriteLoadTexture(const std::string& key, const std:
 	spriteGo->SetTexture(texResMgr.Get(path));
 	AddGo(spriteGo);
 	
-	sprites.insert({ key, spriteGo });
+	sprites.insert({ key, spriteGo });	
 }
 
 void ScenePlayer2Mode::RightPlayerDie()
@@ -404,7 +404,7 @@ void ScenePlayer2Mode::RightPlayerDie()
 void ScenePlayer2Mode::LeftPlayerDie()
 {
 	SetStatus(Status::GameOver);
-	uiMsg->SetString("Left Player Lose / Right Player Lose!!");
+	uiMsg->SetString("Left Player Lose / Right Player Win!!");
 }
 
 void ScenePlayer2Mode::RightPlayerMoveChopEffect(Sides inputSideRightPlayer)
