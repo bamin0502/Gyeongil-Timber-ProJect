@@ -17,6 +17,5 @@ public:
 	static bool GetMouseButtonDown(sf::Mouse::Button button);
 	static bool GetMouseButton(sf::Mouse::Button button);
 	static sf::Vector2i GetMousePosition();
-	
 };
 

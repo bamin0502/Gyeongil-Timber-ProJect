@@ -97,18 +97,14 @@ void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
 
+
+
     if (InputMgr::GetMouseButtonDown(Mouse::Left))
     {
         
        
     }
     
-    
-    if(InputMgr::GetKeyDown(Keyboard::Enter))
-    {
-        
-    }
-
     if(player1State==PlayerReadyState::READY && player2State==PlayerReadyState::READY)
     {
         

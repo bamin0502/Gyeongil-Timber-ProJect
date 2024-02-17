@@ -53,8 +53,13 @@ void SceneGameModeSelect::Init()
     multiText->SetPosition({1920.f / 2, 1080.f / 2 + 270});
     multiText->SetOrigin(Origins::MC);
     AddGo(multiText);
+    NoticeText = new TextGo("NoticeText");
+    NoticeText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), " Mouse: \n LEFT:Single \n RIGHT:Multi", 30, sf::Color::Cyan);
+    NoticeText->SetPosition({1700,100});
+    NoticeText->SetOrigin(Origins::MC);
+    AddGo(NoticeText);
 
-
+    
 }
 
 void SceneGameModeSelect::Release()
@@ -75,24 +80,39 @@ void SceneGameModeSelect::Exit()
 void SceneGameModeSelect::Update(float dt)
 {
     Scene::Update(dt);
-    
-    if (InputMgr::GetMouseButtonDown(Mouse::Left))
+
+    //마우스 클릭 이벤트는 먹히는데 마우스 위치인지 버튼 위치를 제대로 못잡아서 일단 마우스 클릭만 하면 이동하도록 설정
+    // Vector2f singleSize;
+    // singleButton->GetSize(singleSize);
+    // Vector2f multiSize;
+    // multiButton->GetSize(multiSize);
+    // const Vector2f multiPos = multiButton->GetPosition();
+    // const Vector2f singlePos = singleButton->GetPosition();
+    //
+    // const Vector2i mousePos = InputMgr::GetMousePosition();
+    // const Vector2f mousePosF = { static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) };
+
+    if(InputMgr::GetMouseButton(Mouse::Left))
     {
-        
-        //버튼 안에서 클릭했을 경우 실행 시킬건데 어캐해야할까?
-        if (singleButton->GetPosition().x && singleButton->GetPosition().y)
-        {
-            SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME);
-        }
-        else if(multiButton->GetPosition().x && multiButton->GetPosition().y)
-        {
-            SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER_SELECT);
-        }
-        else if(!singleButton->GetPosition().x && !singleButton->GetPosition().y && !multiButton->GetPosition().x && !multiButton->GetPosition().y)
-        {
-            //아무것도 안하고 넘어가기
-            
-        }
+        // if(mousePosF.x > singlePos.x - singleSize.x / 2 && mousePosF.x < singlePos.x + singleSize.x / 2 &&
+        //    mousePosF.y > singlePos.y - singleSize.y / 2 && mousePosF.y < singlePos.y + singleSize.y / 2)
+        // {
+        //     SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME);
+        // }
+        // else if(mousePosF.x > multiPos.x - multiSize.x / 2 && mousePosF.x < multiPos.x + multiSize.x / 2 &&
+        //         mousePosF.y > multiPos.y - multiSize.y / 2 && mousePosF.y < multiPos.y + multiSize.y / 2)
+        // {
+        //     SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER_SELECT);
+        // }
+        SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME);
     }
+    if(InputMgr::GetMouseButton(Mouse::Right))
+    {
+        SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER_SELECT);
+    }
+   if(InputMgr::GetKeyDown(Keyboard::Escape))
+   {
+       SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+   }
 }
 

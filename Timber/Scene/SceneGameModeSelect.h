@@ -13,6 +13,7 @@ protected:
     TextGo* selectText;
     TextGo* singleText;
     TextGo* multiText;
+    TextGo* NoticeText;
 
 public:
 
@@ -26,5 +27,7 @@ public:
     void Exit() override;
 
     void Update(float dt) override;
+
+    
 };
 
