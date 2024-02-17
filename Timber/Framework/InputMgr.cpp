@@ -58,3 +58,28 @@ bool InputMgr::GetKey(sf::Keyboard::Key key)
 {
     return std::find(ingList.begin(), ingList.end(), key) != ingList.end();
 }
+<<<<<<< HEAD
+=======
+
+bool InputMgr::GetMouseButtonDown(Mouse::Button button)
+{
+    return Mouse::isButtonPressed(button); 
+}
+
+bool InputMgr::GetMouseButton(Mouse::Button button)
+{
+    return Mouse::isButtonPressed(button);
+}
+
+sf::Vector2i InputMgr::GetMousePosition()
+{
+    return Mouse::getPosition();
+}
+
+
+
+
+
+
+
+>>>>>>> fa46320 (일단 버튼구역 클릭하면 넘어가는거 도무지 못하겠어서 포기하고 마우스 왼쪽 오른쪽으로 넘어가게 수정)
