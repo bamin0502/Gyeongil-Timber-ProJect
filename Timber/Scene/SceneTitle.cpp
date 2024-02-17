@@ -37,10 +37,10 @@ void SceneTitle::Update(float dt)
 {
 	Scene::Update(dt);
 
-	/*if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
 		SCENE_MGR.ChangeScene(SceneIds::SCENE_PLAYER_2_MODE);
-	}*/
+	}
 }
 
 void SceneTitle::Enter()

@@ -1,18 +1,21 @@
 #include "pch.h"
 #include "SceneCharacterSelect.h"
 
+SceneCharacterSelect::SceneCharacterSelect(SceneIds id)
+    :Scene(id)
+{
+}
 SceneCharacterSelect::SceneCharacterSelect(SceneIds id):Scene(id)
 {
-    
 }
 
 SceneCharacterSelect::~SceneCharacterSelect()
-{
-    
+{   
 }
 
 void SceneCharacterSelect::Init()
 {
+
     texResMgr.Load("graphics/graybackground.png");
     texResMgr.Load("graphics/player.png");
     texResMgr.Load("graphics/battle.png");
@@ -87,7 +90,6 @@ void SceneCharacterSelect::Enter()
 
 void SceneCharacterSelect::Exit()
 {
-    
 }
 
 void SceneCharacterSelect::Update(float dt)

@@ -15,11 +15,12 @@ void SceneMgr::Init()
 {
 	Release();
 
-	//scenes.push_back(new SceneTitle(SceneIds::SCENE_TITLE));
-	//scenes.push_back(new SceneGameModeSelect(SceneIds::SCENE_GAME_MODE_SELECT));
+	scenes.push_back(new SceneTitle(SceneIds::SCENE_TITLE));
 	scenes.push_back(new SceneCharacterSelect(SceneIds::SCENE_CHARACTER_SELECT));
-	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
-	//scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
+	scenes.push_back(new SceneGameModeSelect(SceneIds::SCENE_GAME_MODE_SELECT));
+	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
+	scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
+
 
 	for (auto scene : scenes)
 	{
@@ -27,8 +28,7 @@ void SceneMgr::Init()
 	}
 
 	currentScene = startScene;
-	//scenes[(int)currentScene]->Enter(); 임시로 주석처리
-	scenes[0]->Enter();
+	scenes[(int)currentScene]->Enter();
 }
 
 void SceneMgr::Release()
@@ -51,12 +51,10 @@ void SceneMgr::ChangeScene(SceneIds id)
 
 void SceneMgr::Update(float dt)
 {
-	//scenes[(int)currentScene]->Update(dt); // 임시로 주석처리
-	scenes[0]->Update(dt); // 임시로 변경
+	scenes[(int)currentScene]->Update(dt);
 }
 
 void SceneMgr::Draw(sf::RenderWindow& window)
 {
-	//scenes[(int)currentScene]->Draw(window); // 임시변경
-	scenes[0]->Draw(window);
+	scenes[(int)currentScene]->Draw(window);
 }

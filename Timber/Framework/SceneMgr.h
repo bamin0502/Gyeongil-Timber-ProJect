@@ -10,8 +10,8 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::vector<Scene*> scenes;
 
-	//SceneIds startScene = SceneIds::SCENE_PLAYER_2_MODE; // ÀÓ½Ã ¼öÁ¤
-	SceneIds startScene = SceneIds::SCENE_CHARACTER_SELECT; // ÀÓ½Ã ¼öÁ¤
+	//SceneIds startScene = SceneIds::SCENE_PLAYER_2_MODE; // ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	SceneIds startScene = SceneIds::SCENE_CHARACTER_SELECT; // ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SceneIds currentScene = startScene;
 
 	SceneMgr() = default;
@@ -24,8 +24,7 @@ public:
 	void ChangeScene(SceneIds id);
 
 	
-	//Scene* GetCurrentScene() { return scenes[(int)currentScene]; } ¿øº»
-	Scene* GetCurrentScene() { return scenes[0]; } // ÀÓ½Ã ¼öÁ¤
+	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
 
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window);
