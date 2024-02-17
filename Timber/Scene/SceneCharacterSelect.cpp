@@ -17,7 +17,8 @@ void SceneCharacterSelect::Init()
     texResMgr.Load("graphics/player.png");
     texResMgr.Load("graphics/battle.png");
     //texResMgr.Load("graphics/player2.png");
-    //texResMgr.Load("graphics/character_frame.png");
+    texResMgr.Load("graphics/character_frame.png");
+    texResMgr.Load("graphics/character_frame2.png");
     fontResMgr.Load("fonts/NeoDunggeunmoPro-Regular.ttf");
 
     backGround = new SpriteGo("BG");
@@ -26,13 +27,43 @@ void SceneCharacterSelect::Init()
     backGround->SetOrigin(Origins::MC);
     backGround->SetScale({2.0f, 2.0f});
     AddGo(backGround);
+    
+    characterFrame = new SpriteGo("CharacterFrame");
+    characterFrame->SetTexture("graphics/character_frame.png");
+    characterFrame->SetPosition({(1920.f / 2)-300, 1080.f / 2});
+    characterFrame->SetScale({-1.0f, 1.25f});
+    characterFrame->SetOrigin(Origins::MC);
+    AddGo(characterFrame);
 
+    characterFrame2 = new SpriteGo("CharacterFrame2");
+    characterFrame2->SetTexture("graphics/character_frame2.png");
+    characterFrame2->SetPosition({(1920.f / 2)+300, 1080.f / 2});
+    characterFrame2->SetScale({1.0f, 1.25f});
+    characterFrame2->SetOrigin(Origins::MC);
+    AddGo(characterFrame2);
+
+    player1 = new SpriteGo("Player1");
+    player1->SetTexture("graphics/player.png");
+    player1->SetPosition({(1920.f / 2)-300, 1080.f / 2});
+    player1->SetScale({-1.0f, 1.0f});
+    player1->SetOrigin(Origins::MC);
+    AddGo(player1);
+
+    player2 = new SpriteGo("Player2");
+    player2->SetTexture("graphics/player.png");
+    player2->SetPosition({(1920.f / 2)+300, 1080.f / 2});
+    player2->SetScale({1.0f, 1.0f});
+    player2->SetOrigin(Origins::MC);
+    AddGo(player2);
+    
     battle = new SpriteGo("Battle");
     battle->SetTexture("graphics/battle.png");
     battle->SetPosition({1920.f / 2, 1080.f / 2});
     battle->SetOrigin(Origins::MC);
     battle->SetScale({1.0f, 1.0f});
     AddGo(battle);
+
+
     
     choiceText = new TextGo("ChoiceText");
     choiceText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Choose your character!", 75, Color::White);
@@ -62,6 +93,21 @@ void SceneCharacterSelect::Exit()
 void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
+    
+    if(Mouse::isButtonPressed(Mouse::Left))
+    {
+        //버튼을 누르는데 Frame의 위치에 따라서 캐릭터를 선택하게 하기
+        if(Mouse::getPosition().x, Mouse::getPosition().y < characterFrame->GetPosition().x, characterFrame->GetPosition().y)
+        {
+           cout<<"Player1"<<endl;
+        }
+        else if(Mouse::getPosition().x, Mouse::getPosition().y < characterFrame2->GetPosition().x, characterFrame2->GetPosition().y)
+        {
+            cout<<"Player2"<<endl;
+        }
+        
+    }
+    
 }
 
 

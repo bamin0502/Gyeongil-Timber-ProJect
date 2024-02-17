@@ -9,7 +9,10 @@ protected:
     
     SpriteGo* character1;
     SpriteGo* character2;
-    
+    SpriteGo* characterFrame;
+    SpriteGo* characterFrame2;
+    SpriteGo* player1;
+    SpriteGo* player2;
     SpriteGo* battle;
     SpriteGo* backGround;
 public:
