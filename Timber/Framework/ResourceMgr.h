@@ -75,3 +75,5 @@ T ResourceMgr<T>::Empty;
 #define RES_MGR_TEXTURE (ResourceMgr<sf::Texture>::Instance())
 #define RES_MGR_FONT (ResourceMgr<sf::Font>::Instance())
 #define RES_MGR_SOUND_BUFFER (ResourceMgr<sf::SoundBuffer>::Instance())
+#define RES_MGR_MUSIC (ResourceMgr<sf::Music>::Instance())
+#define RES_MGR_RECTANGLE_SHAPE (ResourceMgr<sf::RectangleShape>::Instance())

@@ -26,3 +26,4 @@
 //Namespace
 using namespace std;
 using namespace sf;
+using namespace Glsl;

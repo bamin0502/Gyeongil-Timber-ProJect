@@ -1,4 +1,5 @@
 #pragma once
+#include "Defines.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
 
@@ -15,6 +16,10 @@ protected:
     SpriteGo* player2;
     SpriteGo* battle;
     SpriteGo* backGround;
+    RectangleShape readyButton;
+
+    PlayerReadyState player1State=PlayerReadyState::NOT_READY;
+    PlayerReadyState player2State=PlayerReadyState::NOT_READY;
 public:
     SceneCharacterSelect(SceneIds id);
     virtual ~SceneCharacterSelect();

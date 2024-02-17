@@ -4,7 +4,7 @@
 class TextGo : public GameObject
 {
 protected:
-	sf::Text text;
+	Text text;
 
 public:
 	TextGo(const std::string& name = "");

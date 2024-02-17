@@ -39,7 +39,7 @@ void SceneTitle::Update(float dt)
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_PLAYER_2_MODE);
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME_MODE_SELECT);
 	}
 }
 

@@ -5,9 +5,6 @@ SceneCharacterSelect::SceneCharacterSelect(SceneIds id)
     :Scene(id)
 {
 }
-SceneCharacterSelect::SceneCharacterSelect(SceneIds id):Scene(id)
-{
-}
 
 SceneCharacterSelect::~SceneCharacterSelect()
 {   
@@ -20,6 +17,7 @@ void SceneCharacterSelect::Init()
     texResMgr.Load("graphics/player.png");
     texResMgr.Load("graphics/battle.png");
     //texResMgr.Load("graphics/player2.png");
+    //texResMgr.Load("graphics/player3.png");
     texResMgr.Load("graphics/character_frame.png");
     texResMgr.Load("graphics/character_frame2.png");
     fontResMgr.Load("fonts/NeoDunggeunmoPro-Regular.ttf");
@@ -66,7 +64,11 @@ void SceneCharacterSelect::Init()
     battle->SetScale({1.0f, 1.0f});
     AddGo(battle);
 
-
+    readyButton = RectangleShape({200, 100});
+    readyButton.setFillColor(Color::Green);
+    readyButton.setPosition({1920.f / 2, 1080.f /2 +100});
+    
+    
     
     choiceText = new TextGo("ChoiceText");
     choiceText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Choose your character!", 75, Color::White);
@@ -74,7 +76,6 @@ void SceneCharacterSelect::Init()
     choiceText->SetOrigin(Origins::MC);
     AddGo(choiceText);
 
-    
     
 }
 
@@ -95,19 +96,23 @@ void SceneCharacterSelect::Exit()
 void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
-    
-    if(Mouse::isButtonPressed(Mouse::Left))
+
+    if (InputMgr::GetMouseButtonDown(Mouse::Left))
     {
-        //버튼을 누르는데 Frame의 위치에 따라서 캐릭터를 선택하게 하기
-        if(Mouse::getPosition().x, Mouse::getPosition().y < characterFrame->GetPosition().x, characterFrame->GetPosition().y)
-        {
-           cout<<"Player1"<<endl;
-        }
-        else if(Mouse::getPosition().x, Mouse::getPosition().y < characterFrame2->GetPosition().x, characterFrame2->GetPosition().y)
-        {
-            cout<<"Player2"<<endl;
-        }
         
+       
+    }
+    
+    
+    if(InputMgr::GetKeyDown(Keyboard::Enter))
+    {
+        
+    }
+
+    if(player1State==PlayerReadyState::READY && player2State==PlayerReadyState::READY)
+    {
+        
+        SCENE_MGR.ChangeScene(SceneIds::SCENE_PLAYER_2_MODE);
     }
     
 }

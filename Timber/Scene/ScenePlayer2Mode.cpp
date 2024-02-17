@@ -119,7 +119,7 @@ void ScenePlayer2Mode::Init()
 	// *********************SoundLoad**********************
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
-	Bgm.openFromFile("sound/BackgroundMusic.wav");
+	Bgm.openFromFile("sound/In a Hurry.wav");
 	// ********************Backgorund**********************
 	AddGoSpriteLoadTexture("Background", "BG", "graphics/background.png");
 	

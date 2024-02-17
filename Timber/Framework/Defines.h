@@ -22,3 +22,10 @@ enum class SceneIds
 	SCENE_PLAYER_2_MODE,
 	COUNT,
 };
+
+enum class PlayerReadyState
+{
+	NONE = -1,
+	READY,
+	NOT_READY,
+};
