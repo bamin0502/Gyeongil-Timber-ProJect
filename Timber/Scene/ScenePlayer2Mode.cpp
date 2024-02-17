@@ -388,11 +388,11 @@ void ScenePlayer2Mode::AddGoSpriteLoadTexture(const std::string& key, const std:
 {
 	texResMgr.Load(path);
 
-	auto spriteGo = std::make_unique<SpriteGo>(name);
+	SpriteGo* spriteGo = new SpriteGo(name);
 	spriteGo->SetTexture(texResMgr.Get(path));
-	AddGo(spriteGo.get());
+	AddGo(spriteGo);
 	
-	sprites.insert(std::make_pair(key, std::move(spriteGo))); // 이동연산자 호출
+	sprites.insert({ key, spriteGo });
 }
 
 void ScenePlayer2Mode::RightPlayerDie()
