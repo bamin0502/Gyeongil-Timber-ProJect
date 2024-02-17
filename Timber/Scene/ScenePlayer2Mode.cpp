@@ -2,15 +2,15 @@
 #include "ScenePlayer2Mode.h"
 #include "SpriteGo.h"
 #include "SceneGame.h"
-#include "SpriteGo.h"
 #include "BgMovingGo.h"
-#include "BgBeeGo.h"
 #include "UiScore.h"
 #include "UiTimeBar.h"
 #include "Tree.h"
 #include "EffectLog.h"
 #include "MultiPlayer.h"
 #include <map>
+
+#include "SceneCharacterSelect.h"
 
 ScenePlayer2Mode::ScenePlayer2Mode(SceneIds id) : Scene(id)
 {

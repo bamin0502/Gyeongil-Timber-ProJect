@@ -5,9 +5,10 @@
 
 class SceneCharacterSelect : public Scene
 {
+
 protected:
     TextGo* choiceText;
-    
+    friend class ScenePlayer2Mode;
     SpriteGo* character1;
     SpriteGo* character2;
     SpriteGo* characterFrame;
@@ -20,7 +21,8 @@ protected:
     TextGo* readyText;
     TextGo* player1Text;
     TextGo* player2Text;
-
+    TextGo* noticeText;
+    
     PlayerReadyState player1State=PlayerReadyState::NOT_READY;
     PlayerReadyState player2State=PlayerReadyState::NOT_READY;
 
@@ -30,14 +32,16 @@ protected:
         "graphics/player2.png",
         "graphics/player3.png"
     };
-    
+
+
 public:
     SceneCharacterSelect(SceneIds id);
     virtual ~SceneCharacterSelect();
     bool isReady=false;
     int player1Index;
     int player2Index;
-
+    string player1Texture;
+    string player2Texture;
 
     void Init() override;
     void Release() override;

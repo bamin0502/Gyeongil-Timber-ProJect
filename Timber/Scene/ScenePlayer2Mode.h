@@ -8,6 +8,7 @@ class Tree;
 class EffectLog;
 class MultiPlayer;
 class SpriteGo;
+class SceneCharacterSelect;
 
 class ScenePlayer2Mode : public Scene
 {
@@ -57,14 +58,14 @@ protected:
 public:
 	ScenePlayer2Mode(SceneIds id);
 	virtual ~ScenePlayer2Mode();
-
+	
 	void SetStatus(Status newStatus);
 
 	Status GetStatus() const
 	{
 		return currStatus;
 	}
-
+	
 	void PlayEffectLog(Sides side, PLAYER player);
 
 	void Init() override;

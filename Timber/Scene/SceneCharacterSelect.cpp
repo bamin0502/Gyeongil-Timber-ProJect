@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SceneCharacterSelect.h"
 
+#include "ScenePlayer2Mode.h"
 SceneCharacterSelect::SceneCharacterSelect(SceneIds id)
     :Scene(id)
 {
@@ -20,6 +21,7 @@ void SceneCharacterSelect::Init()
     texResMgr.Load("graphics/character_frame.png");
     texResMgr.Load("graphics/character_frame2.png");
     fontResMgr.Load("fonts/NeoDunggeunmoPro-Regular.ttf");
+    
 
     backGround = new SpriteGo("BG");
     backGround->SetTexture("graphics/graybackground.png");
@@ -92,7 +94,11 @@ void SceneCharacterSelect::Init()
     choiceText->SetOrigin(Origins::MC);
     AddGo(choiceText);
 
-
+    noticeText = new TextGo("NoticeText");
+    noticeText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), " Player1: \n UP:Change \n LShift:Ready \n Player2: \n DOWN:Change \n RShift:Ready \n Start:Mouse Left" , 30, Color::Magenta);
+    noticeText->SetPosition({1700,100});
+    noticeText->SetOrigin(Origins::MC);
+    AddGo(noticeText);
 }
 
 void SceneCharacterSelect::Release()
@@ -146,6 +152,9 @@ void SceneCharacterSelect::Update(float dt)
             player1Index=0;
         }
         player1->SetTexture(CharacterTexture[player1Index]);
+        //선택한 이미지를 게임씬으로 넘겨주기 위해 전역변수에 저장한다.
+        player1Texture = CharacterTexture[player1Index];
+        
     }
     if(InputMgr::GetKeyDown(Keyboard::Down))
     {
@@ -155,6 +164,9 @@ void SceneCharacterSelect::Update(float dt)
             player2Index=0;
         }
         player2->SetTexture(CharacterTexture[player2Index]);
+        //선택한 이미지를 게임씬으로 넘겨주기 위해 전역변수에 저장한다.
+        player2Texture = CharacterTexture[player2Index];
+        
     }
    
      //초록색일때 마우스 왼쪽을 누르면 게임을 시작한다.

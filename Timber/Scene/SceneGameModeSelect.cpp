@@ -54,7 +54,7 @@ void SceneGameModeSelect::Init()
     multiText->SetOrigin(Origins::MC);
     AddGo(multiText);
     NoticeText = new TextGo("NoticeText");
-    NoticeText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), " Mouse: \n LEFT:Single \n RIGHT:Multi", 30, sf::Color::Cyan);
+    NoticeText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), " Mouse: \n LEFT:Single \n RIGHT:Multi", 30, sf::Color::Magenta);
     NoticeText->SetPosition({1700,100});
     NoticeText->SetOrigin(Origins::MC);
     AddGo(NoticeText);
