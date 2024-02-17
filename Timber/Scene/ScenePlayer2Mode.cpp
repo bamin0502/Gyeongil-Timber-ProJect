@@ -202,7 +202,7 @@ void ScenePlayer2Mode::Init()
 
 void ScenePlayer2Mode::Release()
 {
-
+	Scene::Release();
 }
 
 void ScenePlayer2Mode::Enter()
