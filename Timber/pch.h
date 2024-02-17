@@ -1,5 +1,6 @@
 #pragma once
 
+
 // C++
 #include <cstdlib>
 #include <ctime>
@@ -12,12 +13,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+
 #include "Defines.h"
 #include "Utils.h"
 #include "Framework.h"
 #include "InputMgr.h"
 #include "ResourceMgr.h"
 #include "SceneMgr.h"
-
 #include "Scene.h"
 #include "GameObject.h"
+
+//Namespace
+using namespace std;
+using namespace sf;

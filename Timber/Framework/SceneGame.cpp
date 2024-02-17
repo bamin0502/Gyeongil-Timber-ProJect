@@ -149,6 +149,7 @@ void SCENE_GAME::UpdateAwake(float dt)
 
 void SCENE_GAME::UpdateGame(float dt)
 {
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
 		SetStatus(Status::Pause);
