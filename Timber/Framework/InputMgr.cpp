@@ -5,7 +5,9 @@
 std::list<sf::Keyboard::Key> InputMgr::downList;
 std::list<sf::Keyboard::Key> InputMgr::upList;
 std::list<sf::Keyboard::Key> InputMgr::ingList;
-
+std::list<sf::Mouse::Button> InputMgr::mouseDownList;
+std::list<sf::Mouse::Button> InputMgr::mouseUpList;
+std::list<sf::Mouse::Button> InputMgr::mouseIngList;
 void InputMgr::UpdateEvent(const sf::Event& ev)
 {
     switch (ev.type)
@@ -21,6 +23,17 @@ void InputMgr::UpdateEvent(const sf::Event& ev)
         ingList.remove(ev.key.code);
         upList.push_back(ev.key.code);
         break;
+    case sf::Event::MouseButtonPressed:
+        if(!GetMouseButton(ev.mouseButton.button))
+        {
+            mouseIngList.push_back(ev.mouseButton.button);
+            mouseDownList.push_back(ev.mouseButton.button);
+        }
+        break;
+    case sf::Event::MouseButtonReleased:
+        mouseIngList.remove(ev.mouseButton.button);
+        mouseUpList.push_back(ev.mouseButton.button);
+        break;
     }
 }
 
@@ -28,6 +41,8 @@ void InputMgr::Clear()
 {
     downList.clear();
     upList.clear();
+    mouseDownList.clear();
+    mouseUpList.clear();
 }
 
 bool InputMgr::GetKeyDown(sf::Keyboard::Key key)
@@ -62,15 +77,20 @@ bool InputMgr::GetKey(sf::Keyboard::Key key)
 
 bool InputMgr::GetMouseButtonDown(Mouse::Button button)
 {
-    return Mouse::isButtonPressed(button); 
+    return find(mouseDownList.begin(), mouseDownList.end(), button) != mouseDownList.end();
 }
 
 bool InputMgr::GetMouseButton(Mouse::Button button)
 {
-    return Mouse::isButtonPressed(button);
+    return find(mouseIngList.begin(), mouseIngList.end(), button) != mouseIngList.end();
+}
+
+bool InputMgr::GetMouseButtonUp(sf::Mouse::Button button)
+{
+    return find(mouseUpList.begin(), mouseUpList.end(), button) != mouseUpList.end();
 }
 
 sf::Vector2i InputMgr::GetMousePosition()
 {
-    return Mouse::getPosition();
+    return sf::Mouse::getPosition();
 }

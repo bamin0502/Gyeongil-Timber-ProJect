@@ -34,7 +34,7 @@ protected:
 public:
     SceneCharacterSelect(SceneIds id);
     virtual ~SceneCharacterSelect();
-    bool isReady;
+    bool isReady=false;
     int player1Index;
     int player2Index;
 

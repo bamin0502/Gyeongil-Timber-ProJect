@@ -15,8 +15,8 @@ void SceneCharacterSelect::Init()
     texResMgr.Load("graphics/graybackground.png");
     texResMgr.Load("graphics/player.png");
     texResMgr.Load("graphics/battle.png");
-    //texResMgr.Load("graphics/player2.png");
-    //texResMgr.Load("graphics/player3.png");
+    texResMgr.Load("graphics/player2.png");
+    texResMgr.Load("graphics/player3.png");
     texResMgr.Load("graphics/character_frame.png");
     texResMgr.Load("graphics/character_frame2.png");
     fontResMgr.Load("fonts/NeoDunggeunmoPro-Regular.ttf");
@@ -120,28 +120,23 @@ void SceneCharacterSelect::Exit()
 void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
-
     //플레이어가 준비상태가 되면 레디버튼을 누를 수 있게 한다.
     if (InputMgr::GetKeyDown(Keyboard::LShift))
     {
         player1State = PlayerReadyState::READY;
         player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1 \n Ready", 30, Color::Green);
+
+
     }
-    else
-    {
-        player1State = PlayerReadyState::NOT_READY;
-        player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1", 30, Color::Black);
-    }
+
+    
     if(InputMgr::GetKeyDown(Keyboard::RShift))
     {
         player2State = PlayerReadyState::READY;
         player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2 \n Ready", 30, Color::Green);
+
     }
-    else
-    {
-        player2State = PlayerReadyState::NOT_READY;
-        player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2", 30, Color::Black);
-    }
+
     //플레이어 이미지 변경 관련
     if(InputMgr::GetKeyDown(Keyboard::Up))
     {
@@ -161,7 +156,8 @@ void SceneCharacterSelect::Update(float dt)
         }
         player2->SetTexture(CharacterTexture[player2Index]);
     }
-    //초록색일때 마우스 왼쪽을 누르면 게임을 시작한다.
+   
+     //초록색일때 마우스 왼쪽을 누르면 게임을 시작한다.
     if (InputMgr::GetMouseButtonDown(Mouse::Left))
     {
         if(isReady)
