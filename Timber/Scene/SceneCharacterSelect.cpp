@@ -12,7 +12,6 @@ SceneCharacterSelect::~SceneCharacterSelect()
 
 void SceneCharacterSelect::Init()
 {
-
     texResMgr.Load("graphics/graybackground.png");
     texResMgr.Load("graphics/player.png");
     texResMgr.Load("graphics/battle.png");
@@ -63,12 +62,19 @@ void SceneCharacterSelect::Init()
     battle->SetOrigin(Origins::MC);
     battle->SetScale({1.0f, 1.0f});
     AddGo(battle);
+    
+    readyText = new TextGo("ReadyText");
+    readyText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Ready", 75, Color::Black);
+    readyText->SetPosition({1920.f / 2, 1080.f / 2 + 300});
+    readyText->SetOrigin(Origins::MC);
+    AddGo(readyText);
+    
+    readyButton.setSize({400, 100});
+    readyButton.setFillColor(sf::Color(255, 0, 0, 128));
+    readyButton.setOrigin({200, 50});
+    readyButton.setPosition({1920.f / 2, 1080.f / 2 + 320});
 
-    readyButton = RectangleShape({200, 100});
-    readyButton.setFillColor(Color::Green);
-    readyButton.setPosition({1920.f / 2, 1080.f /2 +100});
-    
-    
+
     
     choiceText = new TextGo("ChoiceText");
     choiceText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Choose your character!", 75, Color::White);
@@ -77,11 +83,19 @@ void SceneCharacterSelect::Init()
     AddGo(choiceText);
 
     
+    
 }
 
 void SceneCharacterSelect::Release()
 {
     Scene::Release();
+}
+
+void SceneCharacterSelect::Draw(sf::RenderWindow& window)
+{
+    Scene::Draw(window);
+
+    window.draw(readyButton);
 }
 
 void SceneCharacterSelect::Enter()
@@ -97,18 +111,34 @@ void SceneCharacterSelect::Update(float dt)
 {
     Scene::Update(dt);
 
-
-
+    //플레이어가 준비상태가 되면 레디버튼을 누를 수 있게 한다.
+    if (InputMgr::GetKeyDown(Keyboard::LShift))
+    {
+        player1State = PlayerReadyState::READY;
+    }
+    if(InputMgr::GetKeyDown(Keyboard::RShift))
+    {
+        player2State = PlayerReadyState::READY;
+    }
+    
+    
     if (InputMgr::GetMouseButtonDown(Mouse::Left))
     {
-        
-       
+        if(isReady)
+        {
+            SCENE_MGR.ChangeScene(SceneIds::SCENE_PLAYER_2_MODE);
+        }
+        else
+        {
+            return;
+        }
     }
     
     if(player1State==PlayerReadyState::READY && player2State==PlayerReadyState::READY)
     {
-        
-        SCENE_MGR.ChangeScene(SceneIds::SCENE_PLAYER_2_MODE);
+        isReady= true;
+        readyText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Start", 75, Color::Black);
+        readyButton.setFillColor(sf::Color(0, 255, 0, 128));
     }
     
 }

@@ -17,16 +17,17 @@ protected:
     SpriteGo* battle;
     SpriteGo* backGround;
     RectangleShape readyButton;
+    TextGo* readyText;
 
     PlayerReadyState player1State=PlayerReadyState::NOT_READY;
     PlayerReadyState player2State=PlayerReadyState::NOT_READY;
 public:
     SceneCharacterSelect(SceneIds id);
     virtual ~SceneCharacterSelect();
-
+    bool isReady;
     void Init() override;
     void Release() override;
-
+    void Draw(sf::RenderWindow& window) override;
     void Enter() override;
     void Exit() override;
 
