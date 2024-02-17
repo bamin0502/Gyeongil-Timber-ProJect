@@ -20,6 +20,7 @@ public:
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetFlipX(bool filp) override;
 	void SetFlipY(bool filp) override;
+
 	void GetSize(Vector2f& size) const
 	{
 		size = Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
@@ -29,7 +30,6 @@ public:
 	{
 
 	}
-
 	
 };
 

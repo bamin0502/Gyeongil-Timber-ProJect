@@ -59,6 +59,7 @@ bool InputMgr::GetKey(sf::Keyboard::Key key)
     return std::find(ingList.begin(), ingList.end(), key) != ingList.end();
 }
 
+
 bool InputMgr::GetMouseButtonDown(Mouse::Button button)
 {
     return Mouse::isButtonPressed(button); 
@@ -73,10 +74,3 @@ sf::Vector2i InputMgr::GetMousePosition()
 {
     return Mouse::getPosition();
 }
-
-
-
-
-
-
-
