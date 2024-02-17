@@ -16,11 +16,10 @@ void SceneMgr::Init()
 	Release();
 
 	//scenes.push_back(new SceneTitle(SceneIds::SCENE_TITLE));
-	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_CHARACTER_SELECT));
-	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME_MODE_SELECT));
+	//scenes.push_back(new SceneGameModeSelect(SceneIds::SCENE_GAME_MODE_SELECT));
+	scenes.push_back(new SceneCharacterSelect(SceneIds::SCENE_CHARACTER_SELECT));
 	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
-
-	scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
+	//scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
 
 	for (auto scene : scenes)
 	{

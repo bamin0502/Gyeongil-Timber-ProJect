@@ -4,6 +4,8 @@
 
 class SceneGameModeSelect : public Scene
 {
+protected:
+
 public:
     SceneGameModeSelect(SceneIds id);
     virtual ~SceneGameModeSelect();
