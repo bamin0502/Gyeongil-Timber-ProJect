@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "SceneMgr.h"
 #include "SceneGame.h"
+#include "./Scene/SceneCharacterSelect.h"
+#include "./Scene/SceneGameModeSelect.h"
+#include "./Scene/ScenePlayer2Mode.h"
+#include "./Scene/SceneTitle.h"
 
 SceneMgr::~SceneMgr()
 {
@@ -11,18 +15,21 @@ void SceneMgr::Init()
 {
 	Release();
 
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_TITLE));
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_CHARACTER_SELECT));
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME_MODE_SELECT));
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_PLAYER_2_MODE));
+	//scenes.push_back(new SceneTitle(SceneIds::SCENE_TITLE));
+	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_CHARACTER_SELECT));
+	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME_MODE_SELECT));
+	//scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
+
+	scenes.push_back(new ScenePlayer2Mode(SceneIds::SCENE_PLAYER_2_MODE));
+
 	for (auto scene : scenes)
 	{
 		scene->Init();
 	}
 
 	currentScene = startScene;
-	scenes[(int)currentScene]->Enter();
+	//scenes[(int)currentScene]->Enter(); 임시로 주석처리
+	scenes[0]->Enter();
 }
 
 void SceneMgr::Release()
@@ -45,10 +52,12 @@ void SceneMgr::ChangeScene(SceneIds id)
 
 void SceneMgr::Update(float dt)
 {
-	scenes[(int)currentScene]->Update(dt);
+	//scenes[(int)currentScene]->Update(dt); // 임시로 주석처리
+	scenes[0]->Update(dt); // 임시로 변경
 }
 
 void SceneMgr::Draw(sf::RenderWindow& window)
 {
-	scenes[(int)currentScene]->Draw(window);
+	//scenes[(int)currentScene]->Draw(window); // 임시변경
+	scenes[0]->Draw(window);
 }

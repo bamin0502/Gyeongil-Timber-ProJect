@@ -1,21 +1,23 @@
 #include "pch.h"
-#include "Player.h"
-#include "SceneGame.h"
+#include "MultiPlayer.h"
+#include "./Scene/ScenePlayer2Mode.h"
 #include "Tree.h"
 
-Player::Player(const std::string& name)
-	: SpriteGo(name)
+
+MultiPlayer::MultiPlayer(const std::string& name , 
+	const std::string& tree) : SpriteGo(name) , treeName(tree)
 {
+
 }
 
-void Player::SetSide(Sides s)
+void MultiPlayer::SetSide(Sides s)
 {
 	side = s;
 	SetScale(scale);
 	SetPosition(position);
 }
 
-void Player::OnDie()
+void MultiPlayer::OnDie()
 {
 	isAlive = false;
 	isChopping = false;
@@ -24,7 +26,7 @@ void Player::OnDie()
 	SetScale(scale);
 }
 
-void Player::SetPosition(const sf::Vector2f& pos)
+void MultiPlayer::SetPosition(const sf::Vector2f& pos)
 {
 	position = pos;
 	sf::Vector2f spritePos = position;
@@ -53,7 +55,7 @@ void Player::SetPosition(const sf::Vector2f& pos)
 	spriteAxe.setPosition(axePos);
 }
 
-void Player::SetScale(const sf::Vector2f& s)
+void MultiPlayer::SetScale(const sf::Vector2f& s)
 {
 	scale = s;
 	sf::Vector2f playerScale = scale;
@@ -88,7 +90,7 @@ void Player::SetScale(const sf::Vector2f& s)
 	spriteAxe.setScale(axeScale);
 }
 
-void Player::Init()
+void MultiPlayer::Init()
 {
 	RES_MGR_SOUND_BUFFER.Load("sound/chop.wav");
 	RES_MGR_SOUND_BUFFER.Load("sound/death.wav");
@@ -104,12 +106,12 @@ void Player::Init()
 	sfxDeath.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/death.wav"));
 }
 
-void Player::Release()
+void MultiPlayer::Release()
 {
 	SpriteGo::Release();
 }
 
-void Player::Reset()
+void MultiPlayer::Reset()
 {
 	SpriteGo::Reset();
 
@@ -117,60 +119,66 @@ void Player::Reset()
 	isAlive = true;
 	isChopping = false;
 
-	sceneGame = dynamic_cast<SCENE_GAME*>(SCENE_MGR.GetCurrentScene());
-	tree = dynamic_cast<Tree*>(sceneGame->FindGo("Tree"));
+	sceneGame = dynamic_cast<ScenePlayer2Mode*>(SCENE_MGR.GetCurrentScene());
+	tree = dynamic_cast<Tree*>(sceneGame->FindGo(treeName));
 
 	SetSide(Sides::RIGHT);
+
 }
 
-void Player::Update(float dt)
+void MultiPlayer::Update(float dt)
 {
-	if (sceneGame->GetStatus() != SCENE_GAME::Status::Game)
-		return;
+	//if (sceneGame->GetStatus() != ScenePlayer2Mode::Status::Game)
+	//	return;
 
-	Sides inputSide = Sides::NONE;
+	//Sides inputSide = Sides::NONE;
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
-	{
-		inputSide = Sides::LEFT;
-	}
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
-	{
-		inputSide = Sides::RIGHT;
-	}
+	//if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	//{
+	//	inputSide = Sides::LEFT;
+	//}
+	//if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	//{
+	//	inputSide = Sides::RIGHT;
+	//}
 
-	if (inputSide != Sides::NONE)
-	{
-		isChopping = true;
-		sfxChop.play();
+	//if (inputSide != Sides::NONE)
+	//{
+	//	isChopping = true;
+	//	sfxChop.play();
 
-		Sides branchSide = tree->Chop(inputSide);
-		sceneGame->PlayEffectLog(inputSide);
-		SetSide(inputSide);
+	//	Sides branchSide = tree->Chop(inputSide);
+	//	sceneGame->PlayEffectLog(inputSide);
+	//	SetSide(inputSide);
 
-		if (side != branchSide)
-		{
-			sceneGame->OnChop();
-		}
-		else
-		{
-			sceneGame->OnPlayerDie();
-			OnDie();
-			sfxDeath.play();
-		}
-	}
+	//	if (side != branchSide)
+	//	{
+	//		sceneGame->OnChop();
+	//	}
+	//	else
+	//	{
+	//		sceneGame->OnPlayerDie();
+	//		OnDie();
+	//		sfxDeath.play();
+	//	}
+	//}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left) || InputMgr::GetKeyUp(sf::Keyboard::Right))
-	{
-		isChopping = false;
-	}
+	//if (InputMgr::GetKeyUp(sf::Keyboard::Left) || InputMgr::GetKeyUp(sf::Keyboard::Right))
+	//{
+	//	isChopping = false;
+	//}
 }
 
-void Player::Draw(sf::RenderWindow& window)
+void MultiPlayer::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
 	if (isChopping)
 	{
 		window.draw(spriteAxe);
 	}
+}
+
+void MultiPlayer::MoveChop(Sides inputSide)
+{
+	
 }

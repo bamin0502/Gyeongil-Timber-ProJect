@@ -35,7 +35,6 @@ void SCENE_GAME::Init()
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
 
-
 	SpriteGo* newSpriteGo = new SpriteGo("BG");
 	newSpriteGo->SetTexture("graphics/background.png");
 	AddGo(newSpriteGo);
