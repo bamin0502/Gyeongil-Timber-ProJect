@@ -115,6 +115,8 @@ void SceneCharacterSelect::Draw(sf::RenderWindow& window)
 void SceneCharacterSelect::Enter()
 {
     Scene::Enter();
+
+    Init();
 }
 
 void SceneCharacterSelect::Exit()
@@ -131,7 +133,6 @@ void SceneCharacterSelect::Update(float dt)
         player1State = PlayerReadyState::READY;
         player1Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player1 \n Ready", 30, Color::Green);
 
-
     }
 
     
@@ -139,7 +140,6 @@ void SceneCharacterSelect::Update(float dt)
     {
         player2State = PlayerReadyState::READY;
         player2Text->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Player2 \n Ready", 30, Color::Green);
-
     }
 
     //플레이어 이미지 변경 관련

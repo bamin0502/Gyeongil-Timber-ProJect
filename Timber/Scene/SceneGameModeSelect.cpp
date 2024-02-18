@@ -59,7 +59,6 @@ void SceneGameModeSelect::Init()
     NoticeText->SetOrigin(Origins::MC);
     AddGo(NoticeText);
 
-    
 }
 
 void SceneGameModeSelect::Release()
@@ -70,6 +69,8 @@ void SceneGameModeSelect::Release()
 void SceneGameModeSelect::Enter()
 {
     Scene::Enter();
+
+
 
 }
 

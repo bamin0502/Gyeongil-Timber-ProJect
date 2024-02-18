@@ -13,7 +13,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-
 #include "Defines.h"
 #include "Utils.h"
 #include "Framework.h"
