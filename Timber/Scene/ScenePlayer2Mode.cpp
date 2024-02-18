@@ -333,7 +333,14 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 	if (uiTimeBar[RIGHT]->GetValue() <= 0.f)
 	{
-		uiMsg->SetString("Left Player Win!! / Right Player Lose");
+		if (uiScore[LEFT]->GetScore() == 0 && uiScore[RIGHT]->GetScore() == 0)
+		{
+			uiMsg->SetString("Draw!!");
+		}
+		else
+		{
+			uiMsg->SetString("Left Player Win!! / Right Player Lose");
+		}
 		SetStatus(Status::GameOver);
 		player[RIGHT]->OnDie();
 
@@ -347,7 +354,14 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 	if (uiTimeBar[LEFT]->GetValue() <= 0.f)
 	{
-		uiMsg->SetString("Left Player Lose / Right Player Win!!");
+		if (uiScore[LEFT]->GetScore() == 0 && uiScore[RIGHT]->GetScore() == 0)
+		{
+			uiMsg->SetString("Draw!!");
+		}
+		else
+		{
+			uiMsg->SetString("Left Player Lose / Right Player Win!!");
+		}
 		SetStatus(Status::GameOver);
 		player[LEFT]->OnDie();
 
