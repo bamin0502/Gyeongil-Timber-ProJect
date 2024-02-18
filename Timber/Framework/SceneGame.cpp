@@ -91,6 +91,13 @@ void SCENE_GAME::Init()
 	uiMsg->SetOrigin(Origins::MC);
 	AddGo(uiMsg);
 
+	uiMenuMsg = new TextGo("Menu Message");
+	uiMenuMsg->Set(fontResMgr.Get("fonts/KOMIKAP_.ttf"),
+		"PRESS SPACE GO TO THE TITLE!", 75, sf::Color::White);
+	uiMenuMsg->SetPosition({ 1920.f / 2, 1080.f / 2 + 200 });
+	uiMenuMsg->SetOrigin(Origins::MC);
+	AddGo(uiMenuMsg);
+
 	for (GameObject* obj : gameObjects)
 	{
 		obj->Init();
@@ -151,8 +158,6 @@ void SCENE_GAME::UpdateAwake(float dt)
 	{
 		SetStatus(Status::Game);
 	}
-
-
 }
 
 void SCENE_GAME::UpdateGame(float dt)
@@ -218,6 +223,10 @@ void SCENE_GAME::UpdateGameOver(float dt)
 	{
 		SetStatus(Status::Game);
 	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+	}
 }
 
 void SCENE_GAME::UpdatePause(float dt)
@@ -257,6 +266,7 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
 		uiMsg->SetString("PRESS ENTER TO START!");
+		uiMenuMsg->SetActive(false);
 		break;
 	case Status::Game:
 		if (prevStatus == Status::GameOver)
@@ -269,6 +279,7 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(1.f);
 		uiMsg->SetActive(false);
 		uiMsg->SetString("");
+		uiMenuMsg->SetActive(false);
 		break;
 	case Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
@@ -283,11 +294,13 @@ void SCENE_GAME::SetStatus(Status newStatus)
 			obj->Init();
 		}
 		uiScore->SetScore(0);
+		uiMenuMsg->SetActive(true);
 		break;
 	case Status::Pause:
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
 		uiMsg->SetString("PRESS ESC TO RESUME!");
+		uiMenuMsg->SetActive(false);
 		break;
 	}
 }

@@ -169,6 +169,14 @@ void ScenePlayer2Mode::Init()
 	uiMsg->SetOrigin(Origins::MC);
 	AddGo(uiMsg);
 
+	// *******************uiMenuMsg************************
+	uiMenuMsg = new TextGo("Menu MEssage");
+	uiMenuMsg->Set(fontResMgr.Get("fonts/KOMIKAP_.ttf"),
+		"   PRESS ENTER TO RESTART!\nPRESS SPACE GO TO THE TITLE", 65, sf::Color::White);
+	uiMenuMsg->SetPosition({ 1920.f / 2, 1080.f / 2 + 200 });
+	uiMenuMsg->SetOrigin({ Origins::MC });
+	AddGo(uiMenuMsg);
+
 	// **********************uiScore***********************
 	uiScore[LEFT] = new UiScore("LeftScore");
 	uiScore[RIGHT] = new UiScore("RIGHTScore");
@@ -260,9 +268,8 @@ void ScenePlayer2Mode::UpdateAwake(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
-		
-
 	}
+	uiMenuMsg->SetActive(false);
 }
 
 void ScenePlayer2Mode::UpdateGame(float dt)
@@ -358,14 +365,19 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 			++it;
 		}
 	}
+	uiMenuMsg->SetActive(false);
 }
 
 void ScenePlayer2Mode::UpdateGameOver(float dt)
 {
-
+	uiMenuMsg->SetActive(true);
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 	}
 }
 
@@ -375,6 +387,7 @@ void ScenePlayer2Mode::UpdatePause(float dt)
 	{
 		SetStatus(Status::Game);
 	}
+	uiMenuMsg->SetActive(false);
 }
 
 void ScenePlayer2Mode::Draw(sf::RenderWindow& window)

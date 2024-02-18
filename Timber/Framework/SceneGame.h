@@ -22,6 +22,7 @@ public:
 protected:
 	UiScore* uiScore = nullptr;
 	TextGo* uiMsg = nullptr;
+	TextGo* uiMenuMsg = nullptr;
 	UiTimeBar* uiTimeBar = nullptr;
 
 	Tree* tree = nullptr;

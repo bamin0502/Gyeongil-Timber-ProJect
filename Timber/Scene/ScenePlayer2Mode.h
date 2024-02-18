@@ -34,6 +34,7 @@ protected:
 	std::vector<UiScore*> uiScore {nullptr, nullptr};
 
 	TextGo* uiMsg = nullptr;
+	TextGo* uiMenuMsg = nullptr;
 
 	std::vector<UiTimeBar*> uiTimeBar{ nullptr, nullptr };
 	std::vector<float> timer{ 0.f, 0.f };
