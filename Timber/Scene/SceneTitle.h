@@ -8,6 +8,8 @@ class SceneTitle : public Scene
 protected:
 	SpriteGo* startTitle = nullptr;
 	TextGo* uiText = nullptr;
+
+	Sound sfxStartGame;
 public:
 	SceneTitle(SceneIds id);
 	virtual ~SceneTitle();

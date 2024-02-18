@@ -26,6 +26,9 @@ void SceneTitle::Init()
 	uiText->SetPosition({ 1920.f / 2,1080.f - 300 });
 	uiText->SetOrigin(Origins::MC);
 	AddGo(uiText);
+
+	soundResMgr.Load("sound/gamestart.wav");
+	sfxStartGame.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/gamestart.wav"));
 }
 
 void SceneTitle::Release()
@@ -40,6 +43,7 @@ void SceneTitle::Update(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
 		SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME_MODE_SELECT);
+		sfxStartGame.play();
 	}
 }
 
