@@ -66,6 +66,12 @@ void ScenePlayer2Mode::SetStatus(Status newStatus)
 	case Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
+
+		for (auto* data : useEffectList)
+		{
+			data->SetActive(false);
+		}
+
 		for (GameObject* obj : gameObjects)
 		{
 			obj->Init();

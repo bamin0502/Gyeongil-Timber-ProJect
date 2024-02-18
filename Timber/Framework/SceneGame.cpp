@@ -276,6 +276,10 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
 		uiMsg->SetString("GAME OVER! PRESS ENTER TO RESTART!");
+		for (auto* data : useEffectList)
+		{
+			data->SetActive(false);
+		}
 		for (GameObject* obj : gameObjects)
 		{
 			obj->Init();
