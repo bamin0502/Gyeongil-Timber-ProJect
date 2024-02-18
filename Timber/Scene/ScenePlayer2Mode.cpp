@@ -333,7 +333,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 	if (uiTimeBar[RIGHT]->GetValue() <= 0.f)
 	{
-		if (uiScore[LEFT]->GetScore() == 0 && uiScore[RIGHT]->GetScore() == 0)
+		if (uiScore[LEFT]->GetScore() == uiScore[RIGHT]->GetScore())
 		{
 			uiMsg->SetString("Draw!!");
 		}
@@ -354,7 +354,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 	if (uiTimeBar[LEFT]->GetValue() <= 0.f)
 	{
-		if (uiScore[LEFT]->GetScore() == 0 && uiScore[RIGHT]->GetScore() == 0)
+		if (uiScore[LEFT]->GetScore() == uiScore[RIGHT]->GetScore())
 		{
 			uiMsg->SetString("Draw!!");
 		}
