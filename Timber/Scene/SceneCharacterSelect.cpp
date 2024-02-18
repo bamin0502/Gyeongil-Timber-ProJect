@@ -63,7 +63,8 @@ void SceneCharacterSelect::Init()
     battle->SetOrigin(Origins::MC);
     battle->SetScale({1.0f, 1.0f});
     AddGo(battle);
-    
+
+    //이건 readybutton보다 먼저 그려야 글씨가 보이게 됨
     readyText = new TextGo("ReadyText");
     readyText->Set(fontResMgr.Get("fonts/NeoDunggeunmoPro-Regular.ttf"), "Ready", 75, Color::Black);
     readyText->SetPosition({1920.f / 2, 1080.f / 2 + 300});

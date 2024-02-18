@@ -115,6 +115,8 @@ void ScenePlayer2Mode::PlayEffectLog(Sides side , PLAYER player)
 	AddGo(effectLog);
 }
 
+
+
 void ScenePlayer2Mode::Init()
 {
 	// **********************SceneLoad**********************
@@ -257,6 +259,7 @@ void ScenePlayer2Mode::Update(float dt)
 		UpdateGame(dt);
 		break;
 	case Status::GameOver:
+		
 		UpdateGameOver(dt);
 		break;
 	case Status::Pause:
@@ -357,6 +360,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 		return;
 	}
 
+
 	RightPlayerMoveChopEffect(inputSideRightPlayer);
 	LeftPlayerMoveChopEffect(inputSideLeftPlayer);
 
@@ -381,6 +385,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 void ScenePlayer2Mode::UpdateGameOver(float dt)
 {
 	uiMenuMsg->SetActive(true);
+	GameResult();
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
@@ -406,7 +411,9 @@ void ScenePlayer2Mode::Draw(sf::RenderWindow& window)
 }
 
 void ScenePlayer2Mode::OnChop()
-{}
+{
+	
+}
 
 void ScenePlayer2Mode::OnPlayerDie()
 {
@@ -440,13 +447,46 @@ void ScenePlayer2Mode::AddGoSpriteLoadTexture(const std::string& key, const std:
 void ScenePlayer2Mode::RightPlayerDie()
 {
 	SetStatus(Status::GameOver);
-	uiMsg->SetString("Left Player Win!! / Right Player Lose");
+	//uiMsg->SetString("Left Player Win!! / Right Player Lose");
+
+	// int leftPlayerScore = uiScore[LEFT]->GetScore();
+	// int rightPlayerScore = uiScore[RIGHT]->GetScore();
+	//
+	// if (leftPlayerScore > rightPlayerScore) {
+	// 	uiMsg->SetString("Left Player Win!! / Right Player Lose");
+	// 	SetStatus(Status::GameOver);
+	// }
+	// else if (leftPlayerScore < rightPlayerScore) {
+	// 	uiMsg->SetString("Left Player Lose / Right Player Win!!");
+	// 	SetStatus(Status::GameOver);
+	// }
+	// else if(leftPlayerScore == rightPlayerScore){
+	// 	uiMsg->SetString("Draw!!");
+	// 	SetStatus(Status::GameOver);
+	// }
+	//
 }
 
 void ScenePlayer2Mode::LeftPlayerDie()
 {
 	SetStatus(Status::GameOver);
-	uiMsg->SetString("Left Player Lose / Right Player Win!!");
+	//uiMsg->SetString("Left Player Lose / Right Player Win!!");
+
+	// int leftPlayerScore = uiScore[LEFT]->GetScore();
+	// int rightPlayerScore = uiScore[RIGHT]->GetScore();
+	// if (leftPlayerScore < rightPlayerScore) {
+	// 	uiMsg->SetString("Left Player Win!! / Right Player Lose");
+	// 	SetStatus(Status::GameOver);
+	// }
+	// else if (leftPlayerScore > rightPlayerScore) {
+	// 	uiMsg->SetString("Left Player Lose / Right Player Win!!");
+	// 	SetStatus(Status::GameOver);
+	// }
+	// else if(leftPlayerScore == rightPlayerScore){
+	// 	uiMsg->SetString("Draw!!");
+	// 	SetStatus(Status::GameOver);
+	// }
+	
 }
 
 void ScenePlayer2Mode::RightPlayerMoveChopEffect(Sides inputSideRightPlayer)
@@ -509,3 +549,54 @@ void ScenePlayer2Mode::LeftPlayerMoveChopEffect(Sides inputSideLeftPlayer)
 		player[(int)PLAYER::LEFT_PLAYER]->isChopping = false;
 	}
 }
+
+void ScenePlayer2Mode::GameResult()
+{
+	//이미 uiMsg에 결과가 출력되어있는 상태에서는 다시 결과를 출력하지 않는다.
+	if (!uiMsg->GetString().empty())
+	{
+		return;
+	}
+	if(uiScore[LEFT]->GetScore() > uiScore[RIGHT]->GetScore())
+	{
+		uiMsg->SetString("Left Player Win!! / Right Player Lose");
+		SetStatus(Status::GameOver);
+		player[RIGHT]->OnDie();
+
+		sfxTimeOver.play();
+		for (GameObject* obj : gameObjects)
+		{
+			obj->Init();
+		}
+		return;
+	}
+	if(uiScore[LEFT]->GetScore() < uiScore[RIGHT]->GetScore())
+	{
+		uiMsg->SetString("Left Player Lose / Right Player Win!!");
+		SetStatus(Status::GameOver);
+		player[LEFT]->OnDie();
+
+		sfxTimeOver.play();
+		for (GameObject* obj : gameObjects)
+		{
+			obj->Init();
+		}
+		return;
+	}
+	if(uiScore[LEFT]->GetScore() == uiScore[RIGHT]->GetScore())
+	{
+		uiMsg->SetString("Draw!!");
+		SetStatus(Status::GameOver);
+		player[LEFT]->OnDie();
+		player[RIGHT]->OnDie();
+
+		sfxTimeOver.play();
+		for (GameObject* obj : gameObjects)
+		{
+			obj->Init();
+		}
+		return;
+	}
+}
+
+

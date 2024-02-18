@@ -10,6 +10,7 @@ public:
 	TextGo(const std::string& name = "");
 
 	void SetString(const std::string& str);
+	string GetString() const;
 	void Set(const sf::Font& texture, const std::string& str, int size, const sf::Color& color);
 
 	void SetFont(const std::string& textureId);

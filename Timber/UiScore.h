@@ -13,8 +13,9 @@ public:
 	UiScore(const std::string& name = "");
 
 	void Reset() override;
-
+	int GetScore() const;
 	void SetScore(int score);
 	void AddScore(int score);
+	
 };
 

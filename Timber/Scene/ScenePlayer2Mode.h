@@ -10,6 +10,7 @@ class MultiPlayer;
 class SpriteGo;
 class SceneCharacterSelect;
 
+
 class ScenePlayer2Mode : public Scene
 {
 public:
@@ -63,7 +64,7 @@ public:
 	virtual ~ScenePlayer2Mode();
 	
 	void SetStatus(Status newStatus);
-
+	void OnChop();
 	Status GetStatus() const
 	{
 		return currStatus;
@@ -85,7 +86,7 @@ public:
 
 	void Draw(RenderWindow& window) override;
 
-	void OnChop();
+	
 	void OnPlayerDie();
 
 	void RightPlayerDie();
@@ -98,5 +99,7 @@ public:
 
 	void RightPlayerMoveChopEffect(Sides inputSideRightPlayer);
 	void LeftPlayerMoveChopEffect(Sides inputSideLeftPlayer);
+
+	void GameResult();
 };
 

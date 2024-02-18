@@ -59,5 +59,6 @@ public:
 	virtual void Draw(sf::RenderWindow& window); 
 
 	void MoveChop(Sides inputSide);
+	
 };
 

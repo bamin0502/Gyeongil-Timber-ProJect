@@ -12,10 +12,15 @@ void TextGo::SetString(const std::string& str)
 	SetOrigin(originPreset);
 }
 
+string TextGo::GetString() const
+{
+	return text.getString();
+}
+
 void TextGo::Set(const sf::Font& texture,
-	const std::string& str,
-	int size, 
-	const sf::Color& color)
+                 const std::string& str,
+                 int size, 
+                 const sf::Color& color)
 {
 	SetFont(texture);
 	text.setString(str);
