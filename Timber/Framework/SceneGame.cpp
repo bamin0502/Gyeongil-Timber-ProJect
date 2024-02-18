@@ -38,9 +38,6 @@ void SCENE_GAME::Init()
 	soundResMgr.Load("sound/In a Hurry.wav");
 	Bgm.openFromFile("sound/In a Hurry.wav");
 	
-	
-	
-	
 	SpriteGo* newSpriteGo = new SpriteGo("BG");
 	newSpriteGo->SetTexture("graphics/background.png");
 	AddGo(newSpriteGo);
@@ -122,6 +119,7 @@ void SCENE_GAME::Enter()
 void SCENE_GAME::Exit()
 {
 	FRAMEWORK.SetTimeScale(1.f);
+	Bgm.stop();
 }
 
 void SCENE_GAME::Update(float dt)
@@ -175,7 +173,10 @@ void SCENE_GAME::UpdateGame(float dt)
 		timer += 0.5f;
 		uiScore->AddScore(10);
 	}
-
+	if(InputMgr::GetKeyDown(sf::Keyboard::F1))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+	}
 	timer = timer > 3.0f ? 3.0f : timer;
 
 	timer -= dt;
@@ -193,10 +194,7 @@ void SCENE_GAME::UpdateGame(float dt)
 		uiScore->SetScore(0);
 		return;
 	}
-
-
 	
-
 	auto it = useEffectList.begin();
 	while (it != useEffectList.end())
 	{

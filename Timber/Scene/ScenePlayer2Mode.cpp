@@ -125,7 +125,9 @@ void ScenePlayer2Mode::Init()
 	// *********************SoundLoad**********************
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
+	soundResMgr.Load("sound/In a Hurry.wav");
 	Bgm.openFromFile("sound/In a Hurry.wav");
+
 	// ********************Backgorund**********************
 	AddGoSpriteLoadTexture("Background", "BG", "graphics/background.png");
 	
@@ -209,6 +211,7 @@ void ScenePlayer2Mode::Init()
 void ScenePlayer2Mode::Release()
 {
 	Scene::Release();
+	Bgm.stop();
 }
 
 void ScenePlayer2Mode::Enter()
@@ -220,12 +223,16 @@ void ScenePlayer2Mode::Enter()
 		SetPosition(tree[RIGHT]->GetPosition());
 
 	Scene::Enter();
-
+	Bgm.setVolume(30);
+	Bgm.setLoop(true);
+	Bgm.play();
 	SetStatus(Status::Awake);
 }
 
 void ScenePlayer2Mode::Exit()
-{}
+{
+	Bgm.stop();
+}
 
 void ScenePlayer2Mode::Update(float dt)
 {
@@ -254,9 +261,7 @@ void ScenePlayer2Mode::UpdateAwake(float dt)
 	{
 		SetStatus(Status::Game);
 		
-		Bgm.setVolume(30);
-		Bgm.setLoop(true);
-		Bgm.play();
+
 	}
 }
 
@@ -266,7 +271,10 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 	{
 		SetStatus(Status::Pause);
 	}
-
+	if(InputMgr::GetKeyDown(sf::Keyboard::F1))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+	}
 	Sides inputSideRightPlayer = Sides::NONE;
 	Sides inputSideLeftPlayer = Sides::NONE;
 
@@ -354,7 +362,7 @@ void ScenePlayer2Mode::UpdateGame(float dt)
 
 void ScenePlayer2Mode::UpdateGameOver(float dt)
 {
-	Bgm.stop();
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
