@@ -22,7 +22,7 @@ protected:
     TextGo* player1Text;
     TextGo* player2Text;
     TextGo* noticeText;
-    
+    Music Bgm;
     PlayerReadyState player1State=PlayerReadyState::NOT_READY;
     PlayerReadyState player2State=PlayerReadyState::NOT_READY;
 

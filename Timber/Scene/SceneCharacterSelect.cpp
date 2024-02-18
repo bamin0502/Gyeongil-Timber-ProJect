@@ -99,6 +99,9 @@ void SceneCharacterSelect::Init()
     noticeText->SetPosition({1700,100});
     noticeText->SetOrigin(Origins::MC);
     AddGo(noticeText);
+
+    Bgm.openFromFile("sound/characterMode_bgm.wav");
+    
 }
 
 void SceneCharacterSelect::Release()
@@ -116,12 +119,15 @@ void SceneCharacterSelect::Draw(sf::RenderWindow& window)
 void SceneCharacterSelect::Enter()
 {
     Scene::Enter();
+    Bgm.setVolume(30);
+    Bgm.setLoop(true);
+    Bgm.play();
 
-    Init();
 }
 
 void SceneCharacterSelect::Exit()
 {
+    Bgm.stop();
 }
 
 

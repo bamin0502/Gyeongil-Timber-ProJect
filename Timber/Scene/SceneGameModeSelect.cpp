@@ -59,6 +59,8 @@ void SceneGameModeSelect::Init()
     NoticeText->SetOrigin(Origins::MC);
     AddGo(NoticeText);
 
+    Bgm.openFromFile("sound/modeSelect_bgm.wav");
+
 }
 
 void SceneGameModeSelect::Release()
@@ -69,13 +71,15 @@ void SceneGameModeSelect::Release()
 void SceneGameModeSelect::Enter()
 {
     Scene::Enter();
-
-
-
+    Bgm.setLoop(true);
+    Bgm.setVolume(30);
+    Bgm.play();
+    
 }
 
 void SceneGameModeSelect::Exit()
 {
+    Bgm.stop();
 }
 
 void SceneGameModeSelect::Update(float dt)

@@ -15,6 +15,7 @@ protected:
     TextGo* multiText;
     TextGo* NoticeText;
 
+    Music Bgm;
 public:
 
     SceneGameModeSelect(SceneIds id);
