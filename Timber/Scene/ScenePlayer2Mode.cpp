@@ -574,43 +574,26 @@ void ScenePlayer2Mode::GameResult()
 	if(uiScore[LEFT]->GetScore() > uiScore[RIGHT]->GetScore())
 	{
 		uiMsg->SetString("Left Player Win!! / Right Player Lose");
-		SetStatus(Status::GameOver);
-		player[RIGHT]->OnDie();
-
-		sfxTimeOver.play();
-		for (GameObject* obj : gameObjects)
-		{
-			obj->Init();
-		}
-		return;
 	}
 	if(uiScore[LEFT]->GetScore() < uiScore[RIGHT]->GetScore())
 	{
 		uiMsg->SetString("Left Player Lose / Right Player Win!!");
-		SetStatus(Status::GameOver);
-		player[LEFT]->OnDie();
-
-		sfxTimeOver.play();
-		for (GameObject* obj : gameObjects)
-		{
-			obj->Init();
-		}
-		return;
 	}
 	if(uiScore[LEFT]->GetScore() == uiScore[RIGHT]->GetScore())
 	{
 		uiMsg->SetString("Draw!!");
-		SetStatus(Status::GameOver);
-		player[LEFT]->OnDie();
-		player[RIGHT]->OnDie();
-
-		sfxTimeOver.play();
-		for (GameObject* obj : gameObjects)
-		{
-			obj->Init();
-		}
-		return;
 	}
+
+	SetStatus(Status::GameOver);
+	player[LEFT]->OnDie();
+	player[RIGHT]->OnDie();
+
+	sfxTimeOver.play();
+	for (GameObject* obj : gameObjects)
+	{
+		obj->Init();
+	}
+	return;
 }
 
 
