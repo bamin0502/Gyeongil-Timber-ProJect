@@ -40,8 +40,8 @@ public:
     bool isReady=false;
     int player1Index;
     int player2Index;
-    string player1Texture;
-    string player2Texture;
+    string player1Texture = "graphics/player.png";
+    string player2Texture = "graphics/player.png";
 
     void Init() override;
     void Release() override;
