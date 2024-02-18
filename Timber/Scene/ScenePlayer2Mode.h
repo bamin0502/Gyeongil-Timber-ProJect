@@ -47,6 +47,8 @@ protected:
 
 	std::list<EffectLog*> useEffectList;
 	std::list<EffectLog*> unuseEffectList;
+
+	SceneCharacterSelect* SCENE_CHARACTER_SELECT;
 	
 	Status currStatus;
 

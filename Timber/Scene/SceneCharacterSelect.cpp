@@ -22,7 +22,6 @@ void SceneCharacterSelect::Init()
     texResMgr.Load("graphics/character_frame2.png");
     fontResMgr.Load("fonts/NeoDunggeunmoPro-Regular.ttf");
     
-
     backGround = new SpriteGo("BG");
     backGround->SetTexture("graphics/graybackground.png");
     backGround->SetPosition({1920.f / 2, 1080.f / 2});

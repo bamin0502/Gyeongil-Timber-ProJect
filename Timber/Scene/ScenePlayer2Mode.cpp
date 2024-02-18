@@ -9,7 +9,6 @@
 #include "EffectLog.h"
 #include "MultiPlayer.h"
 #include <map>
-
 #include "SceneCharacterSelect.h"
 
 ScenePlayer2Mode::ScenePlayer2Mode(SceneIds id) : Scene(id)
@@ -118,6 +117,9 @@ void ScenePlayer2Mode::PlayEffectLog(Sides side , PLAYER player)
 
 void ScenePlayer2Mode::Init()
 {
+	// **********************SceneLoad**********************
+
+
 	// **********************FontLoad**********************
 	textResMgrLoad();
 	fontResMgr.Load("fonts/KOMIKAP_.ttf");
@@ -257,11 +259,17 @@ void ScenePlayer2Mode::Update(float dt)
 
 void ScenePlayer2Mode::UpdateAwake(float dt)
 {
+	SCENE_CHARACTER_SELECT = dynamic_cast<SceneCharacterSelect*>(SCENE_MGR.GetSceneIndex(2));
+
+	player[(int)PLAYER::LEFT_PLAYER]->texIdPlayer = SCENE_CHARACTER_SELECT->player1Texture;
+	player[(int)PLAYER::RIGHT_PLAYER]->texIdPlayer = SCENE_CHARACTER_SELECT->player2Texture;
+
+	player[(int)PLAYER::LEFT_PLAYER]->Init();
+	player[(int)PLAYER::RIGHT_PLAYER]->Init();
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
-		
-
 	}
 }
 

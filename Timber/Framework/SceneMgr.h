@@ -24,7 +24,10 @@ public:
 
 	
 	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
-
+	Scene* GetSceneIndex(int index) 
+	{ 
+		return scenes[index];
+	}
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window);
 
